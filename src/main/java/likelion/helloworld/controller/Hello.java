@@ -1,11 +1,11 @@
 package likelion.helloworld.controller;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class Hello {
@@ -41,5 +41,17 @@ public class Hello {
         model.addAttribute("학과", major);
         model.addAttribute("직업", profess);
         return "hello";
+    }
+
+    @GetMapping("/helloJin")
+    public String helloJin(@RequestParam("name") String name,
+                           @RequestParam("year") String year,
+                           @RequestParam("job") String job,
+                           Model model){
+
+        model.addAttribute("name", name);
+        model.addAttribute("year", year);
+        model.addAttribute("job", job);
+        return "jinjin";
     }
 }
