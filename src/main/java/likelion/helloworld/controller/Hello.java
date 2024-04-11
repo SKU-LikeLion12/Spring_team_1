@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Hello {
 
-    @GetMapping("/hello")
+    @GetMapping("/hello_hae")
     public String hello() {
         return "hello";
     }
-    @GetMapping("/hello-data")
+
+    @GetMapping("/hello_haewon")
     public String helloData(Model model) {
-        model.addAttribute("nameKey", "은택 !!!");
+        model.addAttribute("nameKey", "해원 !!!");
         return "hello";
     }
     @GetMapping("/hello/{name}/{age}")
