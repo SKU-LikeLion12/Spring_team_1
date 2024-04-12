@@ -47,7 +47,7 @@ public class Hello {
         return "hello";
     }
 
-    @GetMapping("/hello_Jin")
+    @GetMapping("/hello_jin")
     public String helloJin(@RequestParam("name") String name,
                            @RequestParam("age") String year,
                            @RequestParam("major") String major,
