@@ -23,7 +23,7 @@ public class Hello {
 
         return "hello";
     }
-    @GetMapping("/hello/{name}/{age}/{major}")
+    @GetMapping("/hello_taek/{name}/{age}/{major}")
     public String helloPath(@PathVariable String name,
                             @PathVariable String age,
                             @PathVariable String major,
@@ -47,7 +47,7 @@ public class Hello {
         return "hello";
     }
 
-    @GetMapping("/helloJin")
+    @GetMapping("/hello_Jin")
     public String helloJin(@RequestParam("name") String name,
                            @RequestParam("age") String year,
                            @RequestParam("major") String major,
