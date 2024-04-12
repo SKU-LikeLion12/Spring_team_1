@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class taek {
+
+
     @GetMapping("/bye/{name}/{age}")
     public String byepath(@PathVariable String name,
                             @PathVariable String age,
