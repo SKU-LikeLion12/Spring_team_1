@@ -34,6 +34,21 @@ public class Hello {
         return "hello";
     }
 
+    @GetMapping("/hello_taek/{name}/{age}/{major}/{job}")
+    public String helloPath(@PathVariable String name,
+                            @PathVariable String age,
+                            @PathVariable String major,
+                            @PathVariable String job,
+                            Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("age", age);
+        model.addAttribute("major", major);
+        model.addAttribute("job", job);
+        return "hello";
+    }
+
+
+
     @GetMapping("/hello-param")
     public String helloParam(@RequestParam("name") String name,
                              @RequestParam("age") String age,
