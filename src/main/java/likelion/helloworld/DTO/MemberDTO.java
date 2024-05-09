@@ -10,6 +10,11 @@ public class MemberDTO {
         private String nickname;
         private String userId;
         private String password;
+    }
 
+    @Data
+    public static  class MemberLoginRequest {
+        private String userId;
+        private String password;
     }
 }

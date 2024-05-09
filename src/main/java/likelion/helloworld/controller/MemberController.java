@@ -21,4 +21,11 @@ public class MemberController {
         return memberService.login(request.getUserId(),request.getPassword());
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody MemberDTO.MemberLoginRequest request){
+        return memberService.login(request.getUserId(), request.getPassword());
+    }
+
+
+
 }
