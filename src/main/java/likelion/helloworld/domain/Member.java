@@ -21,8 +21,6 @@ public class Member {
         this.userID = userID;
         this.setPassword(password);
         this.nickName = nickName;
-
-
     }
 
 

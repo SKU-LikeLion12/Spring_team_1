@@ -27,7 +27,7 @@ public class JwtUtility {
     }
 
 
-    // BODY에 토큰 넣기
+
     public Claims validateToken(String token) {
         try{
 
@@ -48,8 +48,9 @@ public class JwtUtility {
 
             System.out.println("Invalid JWT token");
         }
-
         return null;
     }
+
+
 
 }
