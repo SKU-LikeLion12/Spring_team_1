@@ -4,11 +4,13 @@ import likelion.helloworld.domain.Member;
 import likelion.helloworld.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -19,7 +21,7 @@ public class MemberService {
 
     }
 
-
+    @Transactional
     public Member changeName(String token, String nickname){
         Member member = tokenToMember(token);
         if(member == null) return null;
@@ -27,10 +29,12 @@ public class MemberService {
         return member;
     }
 
-
+    @Transactional
     public Member signUp(String userId, String password, String nickname){
         Member  member = memberRepository.findByUserId(userId);
-        if(member !=null)return null;
+        if(member != null) {
+            return null;
+        }
         return memberRepository.save(new Member(userId, password, nickname));
     }
 
@@ -38,9 +42,10 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
+
     public String login(String userId, String password){
         Member member = memberRepository.findByUserId(userId);
-        if(member == null && member.checkPassword(password)) {
+        if(member != null && member.checkPassword(password)) {
             return jwtutility.generateToken(member.getUserID());
         };
         return null;
@@ -52,6 +57,7 @@ public class MemberService {
     public List<Member> findByName(String name){return memberRepository.findByName(name);}
     public List<Member> findAll(){return memberRepository.findAll();}
 
+    @Transactional
     public boolean deleteMember(String token){
         Member member = tokenToMember(token);
         if (member == null) return false;

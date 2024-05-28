@@ -9,14 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 
-@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static final Map<Long, Member> local = new HashMap<>();
 
     @Override
     public Member save(Member member) {
-
         local.put(member.getId(), member);
         return member;
 
