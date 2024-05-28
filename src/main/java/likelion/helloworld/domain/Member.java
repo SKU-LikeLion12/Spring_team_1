@@ -13,8 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Entity
 public class Member {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
     @Column(unique = true)
     private String userID;

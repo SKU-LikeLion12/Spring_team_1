@@ -42,7 +42,6 @@ public class JpaArticleRepository implements ArticleRepository{
         Member member = memberRepository.findById(memberId); // writer가 Member 객체라 그냥 member로 한다.
         return em.createQuery("select a from Article a where a.writer = :m", Article.class)
                 .setParameter("m", member).getResultList();
-
     }
 
 

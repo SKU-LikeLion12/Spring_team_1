@@ -18,9 +18,10 @@ public class ArticleController {
     private final ArticleService articleService;
     private final JwtUtility jwtUtility;
 
+
     @GetMapping("/article/{id}")
     public ArticleDTO.ResponseArticle getArticle(@PathVariable("id") Long id) {
-        Article article = articleService.findById(id);
+        Article article= articleService.findArticle(id);
         return new ArticleDTO.ResponseArticle(article);
     }
 
@@ -45,7 +46,7 @@ public class ArticleController {
     @GetMapping("article/all")
     public List<ArticleDTO.ResponseArticle> getAllArticles() {
         List<ArticleDTO.ResponseArticle> responseArticles = new ArrayList<>();
-        for (Article article : articleService.findAll()) {
+        for (Article article : articleService.findAllArticle()) {
             responseArticles.add(new ArticleDTO.ResponseArticle(article));
         }
         return responseArticles;
@@ -54,7 +55,7 @@ public class ArticleController {
     @GetMapping("/article/add/{member}")
     public List<ArticleDTO.ResponseArticle> writerArticleList(@PathVariable("member") String member) {
         List<ArticleDTO.ResponseArticle> responseArticles = new ArrayList<>();
-        for (Article article : articleService.findAll()) {
+        for (Article article : articleService.findUserArticles(member)) {
             responseArticles.add(new ArticleDTO.ResponseArticle(article));
         }
         return responseArticles;

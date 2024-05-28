@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ArticleService {
 
@@ -28,16 +28,6 @@ public class ArticleService {
 
 
     @Transactional
-    public void deleteArticle(Long articleId, String token){ // 글 번호, 토큰값 받아서 삭제함
-        Article article = articleRepository.findById(articleId);
-        Member member = memberService.tokenToMember(token); // 현재 토근값과 작성한
-        if(member == article.getWriter()){
-            articleRepository.deleteArticle(article);
-        }
-    }
-
-
-    @Transactional
     public Article updateArticle(Long articleId, String title, String content, String token){
         Article article = articleRepository.findById(articleId);
         Member member = memberService.tokenToMember(token);
@@ -48,16 +38,28 @@ public class ArticleService {
     }
 
 
+    @Transactional
+    public void deleteArticle(Long articleId, String token){ // 글 번호, 토큰값 받아서 삭제함
+        Article article = articleRepository.findById(articleId);
+        Member member = memberService.tokenToMember(token); // 현재 토근값과 작성한
+        if(member == article.getWriter()){
+            articleRepository.deleteArticle(article);
+        }
+    }
 
-    public Article findById(Long articleId){
+
+
+
+
+    public Article findArticle(Long articleId){
         return articleRepository.findById(articleId);
     }
 
-    public List<Article> findAll(){
+    public List<Article> findAllArticle(){
         return articleRepository.findAll();
     }
 
-    public List<Article> findUserAll(String memberId){
+    public List<Article> findUserArticles(String memberId){
         Member member = memberService.findByUserId(memberId);
         return articleRepository.findUserAll(member.getId());
     }

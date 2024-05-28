@@ -14,8 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Article {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private long id; // pk
 
     @ManyToOne(fetch = FetchType.LAZY) // 참조하는 쪽에서 적용
