@@ -18,6 +18,7 @@ public class ArticleDTO {
         private LocalDateTime createDate;
         private boolean isChange;
 
+
         public ResponseArticle(Article article){
             this.title = article.getTitle();
             this.content = article.getContent();
@@ -31,6 +32,7 @@ public class ArticleDTO {
             }
         }
     }
+
 
     @Data
     public static class RequestArticle {

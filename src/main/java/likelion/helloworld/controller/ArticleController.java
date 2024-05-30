@@ -1,6 +1,5 @@
 package likelion.helloworld.controller;
 
-
 import likelion.helloworld.DTO.ArticleDTO;
 import likelion.helloworld.domain.Article;
 import likelion.helloworld.service.ArticleService;
@@ -38,7 +37,7 @@ public class ArticleController {
         return new ArticleDTO.ResponseArticle(article);
     }
 
-    @DeleteMapping("article{id}")
+    @DeleteMapping("article/{id}")
     public void  deleteArticle(@RequestBody ArticleDTO.RemoveArticle request, @PathVariable("id") Long id) {
         articleService.deleteArticle(id, request.getToken());
     }
