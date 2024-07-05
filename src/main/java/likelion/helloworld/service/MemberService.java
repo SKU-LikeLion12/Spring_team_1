@@ -1,6 +1,7 @@
 package likelion.helloworld.service;
 
 import likelion.helloworld.domain.Member;
+import likelion.helloworld.exception.IdNotFoundException;
 import likelion.helloworld.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,18 +32,18 @@ public class MemberService {
 
     @Transactional
     public Member signUp(String userId, String password, String nickname){
-        Member  member = memberRepository.findByUserId(userId);
+        Member member = memberRepository.findByUserId(userId);
         if(member != null) {
             return null;
         }
         return memberRepository.save(new Member(userId, password, nickname));
     }
 
-    public Member findMemberById(Long id){
-        return memberRepository.findById(id);
+    public Member findMemberById(String id){
+        return memberRepository.findByUserId(id);
     }
 
-
+    @Transactional
     public String login(String userId, String password){
         Member member = memberRepository.findByUserId(userId);
         if(member != null && member.checkPassword(password)) {
@@ -53,7 +54,13 @@ public class MemberService {
 
 
 
-    public Member findByUserId(String userId){return memberRepository.findByUserId(userId);}
+    public Member findByUserId(String userId){
+        Member member = memberRepository.findByUserId(userId);
+        if (member != null){
+            throw new IdNotFoundException();
+        }
+        return member;
+    }
     public List<Member> findByName(String name){return memberRepository.findByName(name);}
     public List<Member> findAll(){return memberRepository.findAll();}
 

@@ -22,8 +22,8 @@ public class Member {
     @Setter
     private String nickName;
 
-    public Member(String userID, String password, String nickName) {
 
+    public Member(String userID, String password, String nickName) {
         this.userID = userID;
         this.setPassword(password);
         this.nickName = nickName;
@@ -39,8 +39,6 @@ public class Member {
 
     public boolean checkPassword(String password){
         return passwordEncoder.matches(password, this.password);
-
     }
-
 
 }

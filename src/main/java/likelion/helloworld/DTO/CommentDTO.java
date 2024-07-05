@@ -24,13 +24,9 @@ public class CommentDTO {
             this.writer = comment.getWriter().getNickName();
             this.writer_id = comment.getWriter().getUserID();
             this.content = comment.getContent();
-            if(comment.getCreatedDate().equals(comment.getUpdatedDate())){
-                this.isUpdate = false;
-            }else{
-                this.isUpdate = true;
-            }
+            this.createDate = comment.getCreatedDate();
+            this.isUpdate = !comment.getCreatedDate().equals(comment.getUpdatedDate());
         }
-
     }
 
     @Data

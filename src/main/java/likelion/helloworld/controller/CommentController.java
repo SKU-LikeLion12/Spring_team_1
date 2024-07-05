@@ -17,7 +17,6 @@ public class CommentController {
     private final JwtUtility jwtUtility;
 
 
-
     @PostMapping("/comment")
     public CommentDTO.CommentResponse createComment(@RequestBody CommentDTO.CommentCreateRequest request) {
         Comment comment = commentService.saveComment(request.getToken(), request.getArticle_id(), request.getContent());

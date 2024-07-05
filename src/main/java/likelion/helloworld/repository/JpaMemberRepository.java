@@ -14,9 +14,9 @@ public class JpaMemberRepository implements MemberRepository {
 
     private final EntityManager em;
 
-
     @Override
     public Member save(Member member) {
+        System.out.println("save member");
         em.persist(member);
         return member;
     }
@@ -33,7 +33,6 @@ public class JpaMemberRepository implements MemberRepository {
                     .setParameter("userId",userId).getSingleResult();
         }catch(NoResultException e){
             return null;
-
         }
     }
 

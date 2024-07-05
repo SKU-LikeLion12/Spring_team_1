@@ -27,7 +27,6 @@ public class JwtUtility {
     }
 
 
-
     public Claims validateToken(String token) {
         try{
 
@@ -37,20 +36,8 @@ public class JwtUtility {
                     .getBody();
 
             return claims;
-
-        } catch (SignatureException ex){
-
-            System.out.println("Invalid JWT signature");
-        }catch (ExpiredJwtException ex){
-
-            System.out.println("Expired JWT token");
-        }catch (Exception ex){
-
-            System.out.println("Invalid JWT token");
+        } catch (Exception ex){
+            throw ex;
         }
-        return null;
     }
-
-
-
 }

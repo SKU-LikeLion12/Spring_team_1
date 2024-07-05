@@ -16,7 +16,6 @@ public class Article {
 
     @Id @GeneratedValue
     private long id; // pk
-
     @ManyToOne(fetch = FetchType.LAZY) // 참조하는 쪽에서 적용
     @JoinColumn(name ="writer_id") // fk
     @OnDelete(action = OnDeleteAction.CASCADE)

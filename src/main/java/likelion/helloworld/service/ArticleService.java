@@ -20,7 +20,7 @@ public class ArticleService {
 
     @Transactional
     public Article saveNewArticle(String writerId, String title, String content){ // 작성자 아이디, 제목, 글이름
-        Member member = memberService.findByUserId(writerId); // 작성자의 개인 데이터 가져옴
+        Member member = memberService.findMemberById(writerId); // 작성자의 개인 데이터 가져옴
         Article article = new Article(title, content , member ); // 글 데이터로 객체 만듬
         articleRepository.saveNewArticle(article);
         return article;
@@ -46,9 +46,6 @@ public class ArticleService {
             articleRepository.deleteArticle(article);
         }
     }
-
-
-
 
 
     public Article findArticle(Long articleId){
