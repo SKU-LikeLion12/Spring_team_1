@@ -6,7 +6,6 @@ import likelion.helloworld.domain.Article;
 import likelion.helloworld.domain.Favorite;
 import likelion.helloworld.domain.Member;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.resource.beans.internal.FallbackBeanInstanceProducer;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JpaFavoriteRepository implements FavoriteRepository{
     private final EntityManager em;
+
 
     @Override
     public Favorite createFavorite(Member member, Article article ) {
@@ -61,6 +61,11 @@ public class JpaFavoriteRepository implements FavoriteRepository{
         }
     }
 
+    @Override
+    public List<Favorite> memberToFavorite(Member member){
+        return em.createQuery("select f from Favorite f where f.liker = :member", Favorite.class)
+                .setParameter("member", member).getResultList();
+    }
 
 
 }

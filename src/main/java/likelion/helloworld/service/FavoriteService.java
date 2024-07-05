@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -34,8 +36,8 @@ public class FavoriteService {
             return null;
         }else{
             favoriteRepository.createFavorite(member, article);
+            return new Favorite(member, article);
         }
-        return null;
     }
 
 
@@ -69,6 +71,9 @@ public class FavoriteService {
         return isFavorite;
     }
 
-
+    public List<Favorite> memberToFavorite(String token) {
+        Member member = memberService.tokenToMember(token);
+        return favoriteRepository.memberToFavorite(member);
+    }
 
 }

@@ -52,8 +52,6 @@ public class MemberService {
         return null;
     }
 
-
-
     public Member findByUserId(String userId){
         Member member = memberRepository.findByUserId(userId);
         if (member != null){

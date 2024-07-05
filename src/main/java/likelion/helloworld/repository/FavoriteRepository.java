@@ -15,5 +15,6 @@ public interface FavoriteRepository {
 
     public long findArticleFavorite(Article article);
 
+    public List<Favorite> memberToFavorite(Member member);
 
 }
